@@ -419,7 +419,9 @@
                <div class="Services-box">
                   <i><img src="data-web/images/service3.png" alt="#" /></i>
                   <h3>Contactanos</h3>
-                  <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.</p>
+                  <p>Mail: Soporte@cuantosabesde.com</p>
+                  <p>Telefono: 523-5324</p>
+                  <p>Dirección: Bella Vista, Panamá</p>
                </div>
             </div>
          </div>
