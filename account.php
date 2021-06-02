@@ -221,7 +221,7 @@ if(@$_GET['q']== 3)
 $q=mysqli_query($con,"SELECT * FROM rank  ORDER BY score DESC " )or die('Error223');
 echo  '<div class="panel title"><div class="table-responsive">
 <table class="table table-striped title1" >
-<tr style="color:red"><td><b>Rank</b></td><td><b>Nombre</b></td><td><b>Género</b></td><td><b>Institución</b></td><td><b>Puntaje</b></td></tr>';
+<tr style="color:red"><td><b>Rank</b></td><td><b>Nombre</b></td><td><b>Institución</b></td><td><b>Puntaje</b></td></tr>';
 $c=0;
 while($row=mysqli_fetch_array($q) )
 {
@@ -231,11 +231,11 @@ $q12=mysqli_query($con,"SELECT * FROM user WHERE email='$e' " )or die('Error231'
 while($row=mysqli_fetch_array($q12) )
 {
 $name=$row['name'];
-$gender=$row['gender'];
+//$gender=$row['gender'];
 $college=$row['college'];
 }
 $c++;
-echo '<tr><td style="color:#99cc32"><b>'.$c.'</b></td><td>'.$name.'</td><td>'.$gender.'</td><td>'.$college.'</td><td>'.$s.'</td><td>';
+echo '<tr><td style="color:#99cc32"><b>'.$c.'</b></td><td>'.$name.'</td><td>'.$college.'</td><td>'.$s.'</td><td>';
 }
 echo '</table></div></div>';}
 ?>
