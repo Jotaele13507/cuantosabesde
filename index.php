@@ -403,25 +403,28 @@
          <div class="row">
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                <div class="Services-box">
-                  <i><img src="data-web/images/service1.png" alt="#" /></i>
+                  <i><img src="data-web/images/gps.png" alt="#" /></i>
+                  <br><br>
                   <h3> Misión</h3>
                   <p style="text-align:JUSTIFY">Contribuir a la formación y a la extensión de la educación mediante la tecnología en condiciones de equidad en Panamá.</p>
                </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                <div class="Services-box">
-                  <i><img src="data-web/images/service2.png" alt="#" /></i>
+                  <i><img src="data-web/images/objetivo.png" alt="#" /></i>
+                  <br><br>
                   <h3>Visión</h3>
                   <p style="text-align:JUSTIFY">Convertirnos en una herramienta de referencia para la mejora de la educación en entornos tecnológicos variados y cambiantes gracias a la innovación y creación de conocimiento educativo.</p>
                </div>
             </div>
             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                <div class="Services-box">
-                  <i><img src="data-web/images/service3.png" alt="#" /></i>
+                  <i><img src="data-web/images/agente-de-centro-de-llamadas.png" alt="#" /></i><br>
+                  <br>
                   <h3>Contactanos</h3>
                   <p>Mail: Soporte@csd.com</p>
                   <p>Telefono: 523-5324</p>
-                  <p>Dirección: Bella Vista, Panamá</p>
+                  <p>Dirección: Bella Vista, Panamá</p><br><br>
                </div>
             </div>
          </div>
