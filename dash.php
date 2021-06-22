@@ -37,7 +37,7 @@
   <div class="header">
     <div class="row">
       <div class="col-lg-6">
-        <span class="logo">Examen Online ConfiguroWeb</span>
+        <span class="logo">Administrador</span>
       </div>
       <?php
       include_once 'dbConnection.php';
@@ -81,7 +81,7 @@
               <li><a href="dash.php?q=8">Eliminar Aula</a></li>
             </ul>
           <li <?php if (@$_GET['q'] == 3) echo 'class="active"'; ?>><a href="dash.php?q=3">Calificaciones</a></li>
-          <li <?php if (@$_GET['q'] == 4) echo 'class="active"'; ?>><a href="dash.php?q=4">Observaciones</a></li>
+          <li <?php if (@$_GET['q'] == 4) echo 'class="active"'; ?>><a href="dash.php?q=4">Solicitudes</a></li>
           <li class="dropdown <?php if (@$_GET['q'] == 5 || @$_GET['q'] == 6) echo 'active"'; ?>">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quiz<span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -190,7 +190,7 @@
         } ?>
         <!--prof end-->
 
-        <!--Aula start-->
+        <!--Add Aula start-->
         <?php if (@$_GET['q'] == 7) {
           echo '
           <div class="row">
@@ -223,7 +223,25 @@
                 </form>
               </div>';
         } ?>
-        <!--Aula end-->
+        <!--Add Aula end-->
+
+        <!--remove Aula start-->
+        <?php if (@$_GET['q'] == 8) {
+
+          $result = mysqli_query($con, "SELECT * FROM aula") or die('Error');
+          echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
+      <tr><td><b>Aula</b></td><td><b>Bachiller</b></td><td></td></tr>';
+
+          while ($row = mysqli_fetch_array($result)) {
+            $aula = $row['aula'];
+            $bachiller = $row['bachiller'];
+
+            echo '<tr><td>' . $aula . '</td><td>' . $bachiller . '</td>
+        <td><a title="Delete User" href="update.php?deaula=' . $aula . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></b></a></td></tr>';
+          }
+          echo '</table></div></div>';
+        } ?>
+        <!--remove Aula end-->
 
         <!--feedback start-->
         <?php if (@$_GET['q'] == 4) {
@@ -240,9 +258,9 @@
             $email = $row['email'];
             $id = $row['id'];
             echo '<tr><td>' . $c++ . '</td>';
-            echo '<td><a title="Clic para ver la observación" href="dash.php?q=4&fid=' . $id . '">' . $subject . '</a></td><td>' . $email . '</td><td>' . $date . '</td><td>' . $time . '</td><td>' . $name . '</td>
-	<td><a title="Abrir observación" href="dash.php?q=4&fid=' . $id . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b></a></td>';
-            echo '<td><a title="Eliminar observación" href="update.php?fdid=' . $id . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></b></a></td>
+            echo '<td><a title="Clic para ver la Solicitud" href="dash.php?q=4&fid=' . $id . '">' . $subject . '</a></td><td>' . $email . '</td><td>' . $date . '</td><td>' . $time . '</td><td>' . $name . '</td>
+	<td><a title="Abrir Solicitud" href="dash.php?q=4&fid=' . $id . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b></a></td>';
+            echo '<td><a title="Eliminar Solicitud" href="update.php?fdid=' . $id . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></b></a></td>
 
 	</tr>';
           }

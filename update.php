@@ -81,6 +81,15 @@ if (isset($_SESSION['key'])) {
   }
 }
 
+//delete aula en admin
+if (isset($_SESSION['key'])) {
+  if (@$_GET['deaula'] && $_SESSION['key'] == 'sunny7785068889') {
+    $deaula = @$_GET['deaula'];
+    $result = mysqli_query($con, "DELETE FROM aula WHERE aula='$deaula' ") or die('Error');
+    header("location:dash.php?q=8");
+  }
+}
+
 //add question en admin
 if (isset($_SESSION['key'])) {
   if (@$_GET['q'] == 'addqns' && $_SESSION['key'] == 'sunny7785068889') {
