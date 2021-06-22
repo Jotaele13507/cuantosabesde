@@ -5,6 +5,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- ico -->
+  <link rel="icon" href="/csdr.ico">
   <title>Examen Online ConfiguroWeb </title>
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
@@ -70,9 +72,14 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <!-- <li <?php if (@$_GET['q'] == 0) echo 'class="active"'; ?>><a href="dash.php?q=0">Inicio<span class="sr-only">(current)</span></a></li> -->
           <li <?php if (@$_GET['q'] == 1) echo 'class="active"'; ?>><a href="dash.php?q=1">Estudiantes</a></li>
           <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="dash.php?q=2">Profesores</a></li>
+          <li class="dropdown <?php if (@$_GET['q'] == 7 || @$_GET['q'] == 8) echo 'active"'; ?>">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aula<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="dash.php?q=7">Agregar Aula</a></li>
+              <li><a href="dash.php?q=8">Eliminar Aula</a></li>
+            </ul>
           <li <?php if (@$_GET['q'] == 3) echo 'class="active"'; ?>><a href="dash.php?q=3">Calificaciones</a></li>
           <li <?php if (@$_GET['q'] == 4) echo 'class="active"'; ?>><a href="dash.php?q=4">Observaciones</a></li>
           <li class="dropdown <?php if (@$_GET['q'] == 5 || @$_GET['q'] == 6) echo 'active"'; ?>">
@@ -80,7 +87,7 @@
             <ul class="dropdown-menu">
               <li><a href="dash.php?q=5">Agregar Quiz</a></li>
               <li><a href="dash.php?q=6">Eliminar Quiz</a></li>
-
+            </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
@@ -171,17 +178,52 @@
           $result = mysqli_query($con, "SELECT * FROM prof") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
                 <tr><td><b>ID PROF</b></td><td><b>Correo Electrónico</b></td><td></td></tr>';
-      
+
           while ($row = mysqli_fetch_array($result)) {
             $idprof = $row['prof_id'];
             $emailprof = $row['email'];
-            
+
             echo '<tr><td>' . $idprof . '</td><td>' . $emailprof . '</td>
                   <td><a title="Delete User" href="update.php?defmail=' . $emailprof . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></b></a></td></tr>';
           }
           echo '</table></div></div>';
         } ?>
         <!--prof end-->
+
+        <!--Aula start-->
+        <?php if (@$_GET['q'] == 7) {
+          echo '
+          <div class="row">
+            <span class="title1" style="margin-left:40%;font-size:30px;"><b>Agregar Aula</b></span><br /><br />
+              <div class="col-md-3"></div><div class="col-md-6">   
+                <form class="form-horizontal title1" name="form" action="update.php?q=addaula"  method="POST">
+                 <fieldset>
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-12 control-label" for="name"></label>  
+                      <div class="col-md-12">
+                        <input id="aula" name="aula" placeholder="Ingrese el Aula" class="form-control input-md" type="text" required>
+                        <span class="help-block">Ejemplo - Decimo A, Decimo B, Decimo C, etc.</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-12 control-label" for="name"></label>  
+                        <div class="col-md-12">
+                          <input id="bachiller" name="bachiller" placeholder="Ingrese el bachiller" class="form-control input-md" type="text" required>
+                          <span class="help-block">Ejemplo - Ciencias , letras, Comercio, etc.</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-12 control-label" for=""></label>
+                      <div class="col-md-12"> 
+                        <input  type="submit" style="margin-left:45%" class="btn btn-primary" value="Crear" class="btn btn-primary"/>
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>';
+        } ?>
+        <!--Aula end-->
 
         <!--feedback start-->
         <?php if (@$_GET['q'] == 4) {

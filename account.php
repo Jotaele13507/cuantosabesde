@@ -44,7 +44,7 @@ $name = $_SESSION['name'];
 $email=$_SESSION['email'];
 
 include_once 'dbConnection.php';
-echo '<span class="pull-right top title1" ><span class="log1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Hola,</span> <a href="account.php?q=1" class="log log1">'.$name.'</a>&nbsp;|&nbsp;<a href="logout.php?q=account.php" class="log"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Cerrar Sesión</button></a></span>';
+echo '<span class="pull-right top title1" ><span class="log1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;Hola,</span> <a href="account.php?q=1" class="log log1">'.$name.'</a>&nbsp;|&nbsp;<a href="logout.php?q=account.php" class="log"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Cerrar Sesión</button></a></span>';
 }?>
 </div>
 </div></div>
@@ -239,82 +239,8 @@ echo '<tr><td style="color:#99cc32"><b>'.$c.'</b></td><td>'.$name.'</td><td>'.$c
 }
 echo '</table></div></div>';}
 ?>
-
-
-
 </div></div></div></div>
 <!--Footer start-->
-<div class="row footer">
-<div class="col-md-3 box">
-<a href="https://www.configuroweb.com/" target="_blank">Quienes Somos</a>
-</div>
-<div class="col-md-3 box">
-<a href="#" data-toggle="modal" data-target="#login">Acceso Administrador</a></div>
-<div class="col-md-3 box">
-<a href="#" data-toggle="modal" data-target="#developers">Desarrolladores</a>
-</div>
-<div class="col-md-3 box">
-<a href="feedback.php">Observaciones</a></div></div>
-<!-- Modal For Developers-->
-<div class="modal fade title1" id="developers">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" style="font-family:'typo' "><span style="color:orange">Desarrolladores</span></h4>
-      </div>
-	  
-      <div class="modal-body">
-        <p>
-		<div class="row">
-		<div class="col-md-4">
-		 <img src="image/avatar.jpg" width=100 height=100 alt="ConfiguroWeb" class="img-rounded">
-		 </div>
-		 <div class="col-md-5">
-		<a href="https://www.configuroweb.com/acerca-de-mi/" style="color:#202020; font-family:'typo' ; font-size:18px" title="Find on Facebook">Mauricio Sevilla Britto</a>
-		<h4 style="color:#202020; font-family:'typo' ;font-size:16px" class="title1">+57 316 243 00 81</h4>
-		<h4 style="font-family:'typo' ">msevilla@gmail.com</h4>
-		<h4 style="font-family:'typo' ">Instituto ConfiguroWeb</h4></div></div>
-		</p>
-      </div>
-    
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-<!--Modal for admin login-->
-	 <div class="modal fade" id="login">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title"><span style="color:orange;font-family:'typo' ">LOGIN</span></h4>
-      </div>
-      <div class="modal-body title1">
-<div class="row">
-<div class="col-md-3"></div>
-<div class="col-md-6">
-<form role="form" method="post" action="admin.php?q=index.php">
-<div class="form-group">
-<input type="text" name="uname" maxlength="20"  placeholder="Admin user id" class="form-control"/> 
-</div>
-<div class="form-group">
-<input type="password" name="password" maxlength="15" placeholder="Password" class="form-control"/>
-</div>
-<div class="form-group" align="center">
-<input type="submit" name="login" value="Login" class="btn btn-primary" />
-</div>
-</form>
-</div><div class="col-md-3"></div></div>
-      </div>
-      <!--<div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>-->
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 <!--footer end-->
-
-
 </body>
 </html>

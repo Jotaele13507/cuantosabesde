@@ -70,6 +70,17 @@ if (isset($_SESSION['key'])) {
   }
 }
 
+//add aula en admin
+if (isset($_SESSION['key'])) {
+  if (@$_GET['q'] == 'addaula' && $_SESSION['key'] == 'sunny7785068889') {
+    $aula = $_POST['aula'];
+    $bachiller = $_POST['bachiller'];
+    $qaula = mysqli_query($con, "INSERT INTO aula VALUES ('$aula', '$bachiller')");
+
+    header("location:dash.php?q=7");
+  }
+}
+
 //add question en admin
 if (isset($_SESSION['key'])) {
   if (@$_GET['q'] == 'addqns' && $_SESSION['key'] == 'sunny7785068889') {
