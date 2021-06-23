@@ -7,10 +7,10 @@
 
   <!-- ico -->
   <link rel="icon" href="/csdr.ico">
-  <title>Examen Online ConfiguroWeb </title>
+  <title>Cuanto sabes de - Administrador </title>
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/main2.css">
   <link rel="stylesheet" href="css/font.css">
   <script src="js/jquery.js" type="text/javascript"></script>
 
@@ -78,7 +78,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aula<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="dash.php?q=7">Agregar Aula</a></li>
-              <li><a href="dash.php?q=8">Eliminar Aula</a></li>
+              <li><a href="dash.php?q=8">Administrar Aula</a></li>
             </ul>
           <li <?php if (@$_GET['q'] == 3) echo 'class="active"'; ?>><a href="dash.php?q=3">Calificaciones</a></li>
           <li <?php if (@$_GET['q'] == 4) echo 'class="active"'; ?>><a href="dash.php?q=4">Solicitudes</a></li>
@@ -129,7 +129,7 @@
           $q = mysqli_query($con, "SELECT * FROM rank  ORDER BY score DESC ") or die('Error223');
           echo  '<div class="panel title"><div class="table-responsive">
 <table class="table table-striped title1" >
-<tr style="color:red"><td><b>Posición</b></td><td><b>Nombre</b></td><td><b>Instituto Educativo</b></td><td><b>Calificación</b></td></tr>';
+<tr style="color:#0c0f38"><td><b>Posición</b></td><td><b>Nombre</b></td><td><b>Instituto Educativo</b></td><td><b>Calificación</b></td></tr>';
           $c = 0;
           while ($row = mysqli_fetch_array($q)) {
             $e = $row['email'];
@@ -141,21 +141,20 @@
               $college = $row['college'];
             }
             $c++;
-            echo '<tr><td style="color:#99cc32"><b>' . $c . '</b></td><td>' . $name . '</td><td>' . $college . '</td><td>' . $s . '</td><td>';
+            echo '<tr><td style="color:#f08800"><b>' . $c . '</b></td><td>' . $name . '</td><td>' . $college . '</td><td>' . $s . '</td><td>';
           }
           echo '</table></div></div>';
         }
 
         ?>
-
-
         <!--home closed-->
-        <!--users start-->
+
+        <!--Estudiantes start-->
         <?php if (@$_GET['q'] == 1) {
 
           $result = mysqli_query($con, "SELECT * FROM user") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-<tr><td><b>S.N.</b></td><td><b>Nombre</b></td><td><b>Institución Académica</b></td><td><b>Correo Electrónico</b></td><td><b>Móvil</b></td><td></td></tr>';
+<tr style="color:#0c0f38"><td><b>S.N.</b></td><td><b>Nombre</b></td><td><b>Institución Académica</b></td><td><b>Correo Electrónico</b></td><td><b>Móvil</b></td><td></td></tr>';
           $c = 1;
           while ($row = mysqli_fetch_array($result)) {
             $name = $row['name'];
@@ -164,27 +163,27 @@
             $email = $row['email'];
             $college = $row['college'];
 
-            echo '<tr><td>' . $c++ . '</td><td>' . $name . '</td><td>' . $college . '</td><td>' . $email . '</td><td>' . $mob . '</td>
-	<td><a title="Delete User" href="update.php?demail=' . $email . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></b></a></td></tr>';
+            echo '<tr><td style="color:#f08800"><b>' . $c++ . '</b></td><td>' . $name . '</td><td>' . $college . '</td><td>' . $email . '</td><td>' . $mob . '</td>
+	<td><a class="btn btn-danger" title="Delete User" href="update.php?demail=' . $email . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Borrar</b></a></td></tr>';
           }
           $c = 0;
           echo '</table></div></div>';
         } ?>
-        <!--user end-->
+        <!--Estudiantes end-->
 
         <!--prof start-->
         <?php if (@$_GET['q'] == 2) {
 
           $result = mysqli_query($con, "SELECT * FROM prof") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-                <tr><td><b>ID PROF</b></td><td><b>Correo Electrónico</b></td><td></td></tr>';
+                <tr style="color:#0c0f38"><td><b>ID Prof</b></td><td><b>Correo Electrónico</b></td><td></td></tr>';
 
           while ($row = mysqli_fetch_array($result)) {
             $idprof = $row['prof_id'];
             $emailprof = $row['email'];
 
             echo '<tr><td>' . $idprof . '</td><td>' . $emailprof . '</td>
-                  <td><a title="Delete User" href="update.php?defmail=' . $emailprof . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></b></a></td></tr>';
+                  <td><a class="btn btn-danger" title="Delete User" href="update.php?defmail=' . $emailprof . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Borrar</b></a></td></tr>';
           }
           echo '</table></div></div>';
         } ?>
@@ -225,29 +224,31 @@
         } ?>
         <!--Add Aula end-->
 
-        <!--remove Aula start-->
+        <!--Admin Aula start-->
         <?php if (@$_GET['q'] == 8) {
-
           $result = mysqli_query($con, "SELECT * FROM aula") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-      <tr><td><b>Aula</b></td><td><b>Bachiller</b></td><td></td></tr>';
+<tr style="color:#0c0f38"><td><b>Aula</b></td><td><b>Bachiller</b></td><td></td><td></td><td></td><td></td></tr>';
 
           while ($row = mysqli_fetch_array($result)) {
             $aula = $row['aula'];
             $bachiller = $row['bachiller'];
 
-            echo '<tr><td>' . $aula . '</td><td>' . $bachiller . '</td>
-        <td><a title="Delete User" href="update.php?deaula=' . $aula . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></b></a></td></tr>';
+            echo '<td>' . $aula . '</td><td>' . $bachiller . '</td>
+	                <td><a class="btn btn-primary" title="Abrir Aula" href="dash.php?q=9&aaula=' . $aula . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Abrir</b></a></td>';
+            echo '<td><a class="btn btn-success" title="Agregar al Aula" href="update.php?addaula=' . $aula . '"><b><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</b></a></td>';
+            echo '<td><a class="btn btn-warning" title="Editar Aula" href="update.php?edaula=' . $aula . '"><b><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</b></a></td>';
+            echo '<td><a class="btn btn-danger" title="Borrar Aula" href="update.php?deaula=' . $aula . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Borrar</b></a></td></tr>';
           }
           echo '</table></div></div>';
         } ?>
-        <!--remove Aula end-->
+        <!--admin Aula end-->
 
         <!--feedback start-->
         <?php if (@$_GET['q'] == 4) {
           $result = mysqli_query($con, "SELECT * FROM `feedback` ORDER BY `feedback`.`date` DESC") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-<tr><td><b>S.N.</b></td><td><b>Asunto</b></td><td><b>Correo Electrónico</b></td><td><b>Fecha</b></td><td><b>Hora</b></td><td><b>Enviado por</b></td><td></td><td></td></tr>';
+<tr style="color:#0c0f38"><td><b>S.N.</b></td><td><b>Asunto</b></td><td><b>Correo Electrónico</b></td><td><b>Fecha</b></td><td><b>Hora</b></td><td><b>Enviado por</b></td><td></td><td></td></tr>';
           $c = 1;
           while ($row = mysqli_fetch_array($result)) {
             $date = $row['date'];
@@ -257,10 +258,10 @@
             $name = $row['name'];
             $email = $row['email'];
             $id = $row['id'];
-            echo '<tr><td>' . $c++ . '</td>';
-            echo '<td><a title="Clic para ver la Solicitud" href="dash.php?q=4&fid=' . $id . '">' . $subject . '</a></td><td>' . $email . '</td><td>' . $date . '</td><td>' . $time . '</td><td>' . $name . '</td>
-	<td><a title="Abrir Solicitud" href="dash.php?q=4&fid=' . $id . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b></a></td>';
-            echo '<td><a title="Eliminar Solicitud" href="update.php?fdid=' . $id . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></b></a></td>
+            echo '<tr><td style="color:#f08800"><b>' . $c++ . '</b></td>';
+            echo '<td>' . $subject . '</td><td>' . $email . '</td><td>' . $date . '</td><td>' . $time . '</td><td>' . $name . '</td>
+	                <td><a class="btn btn-primary" title="Abrir Solicitud" href="dash.php?q=4&fid=' . $id . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Abrir</b></a></td>';
+            echo '<td><a class="btn btn-danger" title="Eliminar Solicitud" href="update.php?fdid=' . $id . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Borrar</b></a></td>
 
 	</tr>';
           }
@@ -294,7 +295,7 @@
         if (@$_GET['q'] == 5 && !(@$_GET['step'])) {
           echo ' 
 <div class="row">
-<span class="title1" style="margin-left:40%;font-size:30px;"><b>Detalles del examen</b></span><br /><br />
+<span class="title1" style="margin-left:36%;font-size:30px;"><b>Detalles del examen</b></span><br /><br />
  <div class="col-md-3"></div><div class="col-md-6">   <form class="form-horizontal title1" name="form" action="update.php?q=addquiz"  method="POST">
 <fieldset>
 
@@ -456,7 +457,7 @@
 
           $result = mysqli_query($con, "SELECT * FROM quiz ORDER BY date DESC") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-<tr><td><b>S.N.</b></td><td><b>Temática</b></td><td><b>Total de Preguntas</b></td><td><b>Intentos</b></td><td><b>Tiempo límite</b></td><td></td></tr>';
+<tr style="color:#0c0f38"><td><b>S.N.</b></td><td><b>Temática</b></td><td><b>Total de Preguntas</b></td><td><b>Intentos</b></td><td><b>Tiempo límite</b></td><td></td></tr>';
           $c = 1;
           while ($row = mysqli_fetch_array($result)) {
             $title = $row['title'];
@@ -464,14 +465,13 @@
             $sahi = $row['sahi'];
             $time = $row['time'];
             $eid = $row['eid'];
-            echo '<tr><td>' . $c++ . '</td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $time . '&nbsp;min</td>
-	<td><b><a href="update.php?q=rmquiz&eid=' . $eid . '" class="pull-right btn sub1" style="margin:0px;background:red"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Remove</b></span></a></b></td></tr>';
+            echo '<tr><td style="color:#f08800"><b>' . $c++ . '</b></td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $time . '&nbsp;min</td>
+	<td ><b><a class="btn btn-danger" href="update.php?q=rmquiz&eid=' . $eid . '"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Borrar</b></span></a></b></td></tr>';
           }
           $c = 0;
           echo '</table></div></div>';
         }
         ?>
-
 
       </div>
       <!--container closed-->

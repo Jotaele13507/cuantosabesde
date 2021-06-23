@@ -70,6 +70,8 @@ if (isset($_SESSION['key'])) {
   }
 }
 
+//AULA START
+
 //add aula en admin
 if (isset($_SESSION['key'])) {
   if (@$_GET['q'] == 'addaula' && $_SESSION['key'] == 'sunny7785068889') {
@@ -81,6 +83,8 @@ if (isset($_SESSION['key'])) {
   }
 }
 
+
+
 //delete aula en admin
 if (isset($_SESSION['key'])) {
   if (@$_GET['deaula'] && $_SESSION['key'] == 'sunny7785068889') {
@@ -89,6 +93,8 @@ if (isset($_SESSION['key'])) {
     header("location:dash.php?q=8");
   }
 }
+
+//AULA START
 
 //add question en admin
 if (isset($_SESSION['key'])) {
