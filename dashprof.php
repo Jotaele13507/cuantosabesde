@@ -1,11 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
 
-  <title>Examen Online ConfiguroWeb </title>
+  <!-- ico -->
+  <link rel="icon" href="/csdr.ico">
+  <title>Cuanto sabes de - Profesor</title>
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
   <link rel="stylesheet" href="css/main.css">
@@ -70,16 +73,15 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li <?php if (@$_GET['q'] == 0) echo 'class="active"'; ?>><a href="dashprof.php?q=0">Inicio<span class="sr-only">(current)</span></a></li>
-          <li <?php if (@$_GET['q'] == 1) echo 'class="active"'; ?>><a href="dashprof.php?q=1">Estudiantes</a></li>
-          <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="dashprof.php?q=2">Calificaciones</a></li>
-          <li <?php if (@$_GET['q'] == 3) echo 'class="active"'; ?>><a href="dashprof.php?q=3">Observaciones</a></li>
+          <li <?php if (@$_GET['q'] == 0) echo 'class="active"'; ?>><a href="dashprof.php?q=0"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Inicio<span class="sr-only">(current)</span></a></li>
+          <li <?php if (@$_GET['q'] == 1) echo 'class="active"'; ?>><a href="dashprof.php?q=1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Estudiantes</a></li>
+          <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="dashprof.php?q=2"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;Calificaciones</a></li>
+          <li <?php if (@$_GET['q'] == 6) echo 'class="active"'; ?>><a href="dashprof.php?q=6"><span class="glyphicon glyphicon-cloud-upload" aria-hidden="true"></span>&nbsp;Cargar</a></li>
           <li class="dropdown <?php if (@$_GET['q'] == 4 || @$_GET['q'] == 5) echo 'active"'; ?>">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quiz<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span>&nbsp;Quiz<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="dashprof.php?q=4">Agregar Quiz</a></li>
               <li><a href="dashprof.php?q=5">Eliminar Quiz</a></li>
-
             </ul>
           </li>
           <!-- <li class="pull-right"> <a href="logout.php?q=account.php"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Cerrar Sesión</a></li> -->
@@ -99,7 +101,7 @@
 
           $result = mysqli_query($con, "SELECT * FROM quiz ORDER BY date DESC") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-<tr><td><b>S.N.</b></td><td><b>Temática</b></td><td><b>Total de Preguntas</b></td><td><b>Intentos</b></td><td><b>Tiempo Límite</b></td><td></td></tr>';
+<tr style="color:#0c0f38"><td><b>S.N.</b></td><td><b>Temática</b></td><td><b>Total de Preguntas</b></td><td><b>Intentos</b></td><td><b>Tiempo Límite</b></td><td></td></tr>';
           $c = 1;
           while ($row = mysqli_fetch_array($result)) {
             $title = $row['title'];
@@ -110,11 +112,9 @@
             $q12 = mysqli_query($con, "SELECT score FROM history WHERE eid='$eid' AND email='$email'") or die('Error98');
             $rowcount = mysqli_num_rows($q12);
             if ($rowcount == 0) {
-              echo '<tr><td>' . $c++ . '</td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $time . '&nbsp;min</td>
-	<td><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '" class="pull-right btn sub1" style="margin:0px;background:#99cc32"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Examen</b></span></a></b></td></tr>';
+              echo '<tr><td style="color:#f08800"><b>' . $c++ . '</b></td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $time . '&nbsp;min</td></tr>';
             } else {
-              echo '<tr style="color:#99cc32"><td>' . $c++ . '</td><td>' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $time . '&nbsp;min</td>
-	<td><b><a href="update.php?q=quizre&step=25&eid=' . $eid . '&n=1&t=' . $total . '" class="pull-right btn sub1" style="margin:0px;background:red"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Restart</b></span></a></b></td></tr>';
+              echo '<tr style="color:#99cc32"><td style="color:#f08800"><b>' . $c++ . '</b></td><td>' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $time . '&nbsp;min</td></tr>';
             }
           }
           $c = 0;
@@ -126,7 +126,7 @@
           $q = mysqli_query($con, "SELECT * FROM rank  ORDER BY score DESC ") or die('Error223');
           echo  '<div class="panel title"><div class="table-responsive">
 <table class="table table-striped title1" >
-<tr style="color:red"><td><b>Posición</b></td><td><b>Nombre</b></td><td><b>Instituto Educativo</b></td><td><b>Calificación</b></td></tr>';
+<tr style="color:#0c0f38"><td><b>Posición</b></td><td><b>Nombre</b></td><td><b>Instituto Educativo</b></td><td><b>Calificación</b></td></tr>';
           $c = 0;
           while ($row = mysqli_fetch_array($q)) {
             $e = $row['email'];
@@ -138,7 +138,7 @@
               $college = $row['college'];
             }
             $c++;
-            echo '<tr><td style="color:#99cc32"><b>' . $c . '</b></td><td>' . $name . '</td><td>' . $college . '</td><td>' . $s . '</td><td>';
+            echo '<tr><td style="color:#f08800"><b>' . $c . '</b></td><td>' . $name . '</td><td>' . $college . '</td><td>' . $s . '</td><td>';
           }
           echo '</table></div></div>';
         }
@@ -152,7 +152,7 @@
 
           $result = mysqli_query($con, "SELECT * FROM user") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-<tr><td><b>S.N.</b></td><td><b>Nombre</b></td><td><b>Institución Académica</b></td><td><b>Correo Electrónico</b></td><td><b>Móvil</b></td><td></td></tr>';
+<tr style="color:#0c0f38"><td><b>S.N.</b></td><td><b>Nombre</b></td><td><b>Institución Académica</b></td><td><b>Correo Electrónico</b></td><td><b>Móvil</b></td><td></td></tr>';
           $c = 1;
           while ($row = mysqli_fetch_array($result)) {
             $name = $row['name'];
@@ -161,59 +161,13 @@
             $email = $row['email'];
             $college = $row['college'];
 
-            echo '<tr><td>' . $c++ . '</td><td>' . $name . '</td><td>' . $college . '</td><td>' . $email . '</td><td>' . $mob . '</td>
+            echo '<tr><td style="color:#f08800"><b>' . $c++ . '</b></td><td>' . $name . '</td><td>' . $college . '</td><td>' . $email . '</td><td>' . $mob . '</td>
 	<td><a title="Delete User" href="update.php?dexmail=' . $email . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></b></a></td></tr>';
           }
           $c = 0;
           echo '</table></div></div>';
         } ?>
         <!--user end-->
-
-        <!--feedback start-->
-        <?php if (@$_GET['q'] == 3) {
-          $result = mysqli_query($con, "SELECT * FROM `feedback` ORDER BY `feedback`.`date` DESC") or die('Error');
-          echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-<tr><td><b>S.N.</b></td><td><b>Asunto</b></td><td><b>Correo Electrónico</b></td><td><b>Fecha</b></td><td><b>Hora</b></td><td><b>Enviado por</b></td><td></td><td></td></tr>';
-          $c = 1;
-          while ($row = mysqli_fetch_array($result)) {
-            $date = $row['date'];
-            $date = date("d-m-Y", strtotime($date));
-            $time = $row['time'];
-            $subject = $row['subject'];
-            $name = $row['name'];
-            $email = $row['email'];
-            $id = $row['id'];
-            echo '<tr><td>' . $c++ . '</td>';
-            echo '<td><a title="Clic para ver la observación" href="dashprof.php?q=3&fid=' . $id . '">' . $subject . '</a></td><td>' . $email . '</td><td>' . $date . '</td><td>' . $time . '</td><td>' . $name . '</td>
-	<td><a title="Abrir observación" href="dashprof.php?q=3&fid=' . $id . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b></a></td>';
-            echo '<td><a title="Eliminar observación" href="update.php?pfdid=' . $id . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></b></a></td>
-
-	</tr>';
-          }
-          echo '</table></div></div>';
-        }
-        ?>
-        <!--feedback closed-->
-
-        <!--feedback reading portion start-->
-        <?php if (@$_GET['fid']) {
-          echo '<br />';
-          $id = @$_GET['fid'];
-          $result = mysqli_query($con, "SELECT * FROM feedback WHERE id='$id' ") or die('Error');
-          while ($row = mysqli_fetch_array($result)) {
-            $name = $row['name'];
-            $subject = $row['subject'];
-            $date = $row['date'];
-            $date = date("d-m-Y", strtotime($date));
-            $time = $row['time'];
-            $feedback = $row['feedback'];
-
-            echo '<div class="panel"<a title="Back to Archive" href="update.php?q1=2"><b><span class="glyphicon glyphicon-level-up" aria-hidden="true"></span></b></a><h2 style="text-align:center; margin-top:-15px;font-family: "Ubuntu", sans-serif;"><b>' . $subject . '</b></h1>';
-            echo '<div class="mCustomScrollbar" data-mcs-theme="dark" style="margin-left:10px;margin-right:10px; max-height:450px; line-height:35px;padding:5px;"><span style="line-height:35px;padding:5px;">-&nbsp;<b>Fecha:</b>&nbsp;' . $date . '</span>
-<span style="line-height:35px;padding:5px;">&nbsp;<b>Hora:</b>&nbsp;' . $time . '</span><span style="line-height:35px;padding:5px;">&nbsp;<b>Enviado por:</b>&nbsp;' . $name . '</span><br />' . $feedback . '</div></div>';
-          }
-        } ?>
-        <!--Feedback reading portion closed-->
 
         <!--add quiz start-->
         <?php
@@ -380,7 +334,7 @@
 
           $result = mysqli_query($con, "SELECT * FROM quiz ORDER BY date DESC") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-<tr><td><b>S.N.</b></td><td><b>Temática</b></td><td><b>Total de Preguntas</b></td><td><b>Intentos</b></td><td><b>Tiempo límite</b></td><td></td></tr>';
+<tr style="color:#0c0f38"><td><b>S.N.</b></td><td><b>Temática</b></td><td><b>Total de Preguntas</b></td><td><b>Intentos</b></td><td><b>Tiempo límite</b></td><td></td></tr>';
           $c = 1;
           while ($row = mysqli_fetch_array($result)) {
             $title = $row['title'];
@@ -388,7 +342,7 @@
             $sahi = $row['sahi'];
             $time = $row['time'];
             $eid = $row['eid'];
-            echo '<tr><td>' . $c++ . '</td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $time . '&nbsp;min</td>
+            echo '<tr><td style="color:#f08800"><b>' . $c++ . '</b></td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $time . '&nbsp;min</td>
 	<td><b><a href="update.php?q=prmquiz&eid=' . $eid . '" class="pull-right btn sub1" style="margin:0px;background:red"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Remove</b></span></a></b></td></tr>';
           }
           $c = 0;

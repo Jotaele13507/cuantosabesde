@@ -1,13 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
 
   <!-- ico -->
   <link rel="icon" href="/csdr.ico">
-  <title>Cuanto sabes de - Administrador </title>
+  <title>Cuanto sabes de - Administrador</title>
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
   <link rel="stylesheet" href="css/main2.css">
@@ -15,6 +16,8 @@
   <script src="js/jquery.js" type="text/javascript"></script>
 
   <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <!-- Ajax -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
 
   <script>
@@ -72,18 +75,18 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li <?php if (@$_GET['q'] == 1) echo 'class="active"'; ?>><a href="dash.php?q=1">Estudiantes</a></li>
-          <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="dash.php?q=2">Profesores</a></li>
+          <li <?php if (@$_GET['q'] == 1) echo 'class="active"'; ?>><a href="dash.php?q=1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Estudiantes</a></li>
+          <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="dash.php?q=2"><span class="glyphicon glyphicon-education" aria-hidden="true"></span>&nbsp;Profesores</a></li>
           <li class="dropdown <?php if (@$_GET['q'] == 7 || @$_GET['q'] == 8) echo 'active"'; ?>">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aula<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-apple" aria-hidden="true"></span>&nbsp;Aula<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="dash.php?q=7">Agregar Aula</a></li>
               <li><a href="dash.php?q=8">Administrar Aula</a></li>
             </ul>
-          <li <?php if (@$_GET['q'] == 3) echo 'class="active"'; ?>><a href="dash.php?q=3">Calificaciones</a></li>
-          <li <?php if (@$_GET['q'] == 4) echo 'class="active"'; ?>><a href="dash.php?q=4">Solicitudes</a></li>
+          <li <?php if (@$_GET['q'] == 3) echo 'class="active"'; ?>><a href="dash.php?q=3"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;Calificaciones</a></li>
+          <li <?php if (@$_GET['q'] == 4) echo 'class="active"'; ?>><a href="dash.php?q=4"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;Solicitudes</a></li>
           <li class="dropdown <?php if (@$_GET['q'] == 5 || @$_GET['q'] == 6) echo 'active"'; ?>">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quiz<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-flash" aria-hidden="true"></span>&nbsp;Quiz<span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="dash.php?q=5">Agregar Quiz</a></li>
               <li><a href="dash.php?q=6">Eliminar Quiz</a></li>
@@ -102,7 +105,7 @@
 
           $result = mysqli_query($con, "SELECT * FROM quiz ORDER BY date DESC") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-<tr><td><b>S.N.</b></td><td><b>Temática</b></td><td><b>Total de Preguntas</b></td><td><b>Intentos</b></td><td><b>Tiempo Límite</b></td><td></td></tr>';
+<tr style="color:#0c0f38"><td><b>S.N.</b></td><td><b>Temática</b></td><td><b>Total de Preguntas</b></td><td><b>Intentos</b></td><td><b>Tiempo Límite</b></td><td></td></tr>';
           $c = 1;
           while ($row = mysqli_fetch_array($result)) {
             $title = $row['title'];
@@ -113,8 +116,8 @@
             $q12 = mysqli_query($con, "SELECT score FROM history WHERE eid='$eid' AND email='$email'") or die('Error98');
             $rowcount = mysqli_num_rows($q12);
             if ($rowcount == 0) {
-              echo '<tr><td>' . $c++ . '</td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $time . '&nbsp;min</td>
-	<td><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '" class="pull-right btn sub1" style="margin:0px;background:#99cc32"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Examen</b></span></a></b></td></tr>';
+              echo '<tr><td style="color:#f08800"><b>' . $c++ . '</b></td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $time . '&nbsp;min</td>
+	<td><b><a class="btn btn-success" href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '"><span class="glyphicon glyphicon-file" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Examen</b></span></a></b></td></tr>';
             } else {
               echo '<tr style="color:#99cc32"><td>' . $c++ . '</td><td>' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $time . '&nbsp;min</td>
 	<td><b><a href="update.php?q=quizre&step=25&eid=' . $eid . '&n=1&t=' . $total . '" class="pull-right btn sub1" style="margin:0px;background:red"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Restart</b></span></a></b></td></tr>';
@@ -152,6 +155,11 @@
         <!--Estudiantes start-->
         <?php if (@$_GET['q'] == 1) {
 
+          echo'
+          
+
+          ';
+
           $result = mysqli_query($con, "SELECT * FROM user") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
 <tr style="color:#0c0f38"><td><b>S.N.</b></td><td><b>Nombre</b></td><td><b>Institución Académica</b></td><td><b>Correo Electrónico</b></td><td><b>Móvil</b></td><td></td></tr>';
@@ -176,13 +184,14 @@
 
           $result = mysqli_query($con, "SELECT * FROM prof") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-                <tr style="color:#0c0f38"><td><b>ID Prof</b></td><td><b>Correo Electrónico</b></td><td></td></tr>';
+                <tr style="color:#0c0f38"><td><b>ID Prof</b></td><td><b>Nombre del Profesor</b></td><td><b>Correo Electrónico</b></td><td></td></tr>';
 
           while ($row = mysqli_fetch_array($result)) {
             $idprof = $row['prof_id'];
+            $name_prof = $row['name_prof'];
             $emailprof = $row['email'];
 
-            echo '<tr><td>' . $idprof . '</td><td>' . $emailprof . '</td>
+            echo '<tr><td>' . $idprof . '</td><td>' . $name_prof . '</td><td>' . $emailprof . '</td>
                   <td><a class="btn btn-danger" title="Delete User" href="update.php?defmail=' . $emailprof . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Borrar</b></a></td></tr>';
           }
           echo '</table></div></div>';
@@ -237,7 +246,7 @@
             echo '<td>' . $aula . '</td><td>' . $bachiller . '</td>
 	                <td><a class="btn btn-primary" title="Abrir Aula" href="dash.php?q=9&aaula=' . $aula . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Abrir</b></a></td>';
             echo '<td><a class="btn btn-success" title="Agregar al Aula" href="update.php?addaula=' . $aula . '"><b><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</b></a></td>';
-            echo '<td><a class="btn btn-warning" title="Editar Aula" href="update.php?edaula=' . $aula . '"><b><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</b></a></td>';
+            echo '<td><a class="btn btn-warning" title="Editar Aula" href="update.php?edaula=' . $aula . '"><b><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</b></a></td>';
             echo '<td><a class="btn btn-danger" title="Borrar Aula" href="update.php?deaula=' . $aula . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Borrar</b></a></td></tr>';
           }
           echo '</table></div></div>';
@@ -248,7 +257,7 @@
         <?php if (@$_GET['q'] == 4) {
           $result = mysqli_query($con, "SELECT * FROM `feedback` ORDER BY `feedback`.`date` DESC") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-<tr style="color:#0c0f38"><td><b>S.N.</b></td><td><b>Asunto</b></td><td><b>Correo Electrónico</b></td><td><b>Fecha</b></td><td><b>Hora</b></td><td><b>Enviado por</b></td><td></td><td></td></tr>';
+<tr style="color:#0c0f38"><td><b>S.N.</b></td><td><b>Cod. Prof</b></td><td><b>Correo Electrónico</b></td><td><b>Fecha</b></td><td><b>Hora</b></td><td><b>Enviado por</b></td><td></td><td></td></tr>';
           $c = 1;
           while ($row = mysqli_fetch_array($result)) {
             $date = $row['date'];
@@ -283,9 +292,9 @@
             $time = $row['time'];
             $feedback = $row['feedback'];
 
-            echo '<div class="panel"<a title="Back to Archive" href="update.php?q1=2"><b><span class="glyphicon glyphicon-level-up" aria-hidden="true"></span></b></a><h2 style="text-align:center; margin-top:-15px;font-family: "Ubuntu", sans-serif;"><b>' . $subject . '</b></h1>';
-            echo '<div class="mCustomScrollbar" data-mcs-theme="dark" style="margin-left:10px;margin-right:10px; max-height:450px; line-height:35px;padding:5px;"><span style="line-height:35px;padding:5px;">-&nbsp;<b>Fecha:</b>&nbsp;' . $date . '</span>
-<span style="line-height:35px;padding:5px;">&nbsp;<b>Hora:</b>&nbsp;' . $time . '</span><span style="line-height:35px;padding:5px;">&nbsp;<b>Enviado por:</b>&nbsp;' . $name . '</span><br />' . $feedback . '</div></div>';
+            echo '<div class="panel"<a title="Back to Archive" href="update.php?q1=2"><b><span class="glyphicon glyphicon-level-up" aria-hidden="true"></span></b></a><h2 style="text-align:center; margin-top:-15px;font-family: "Ubuntu", sans-serif;"><b>' . $name . '</b></h1>';
+            echo '<div class="mCustomScrollbar" data-mcs-theme="dark" style="margin-left:10px;margin-right:10px; max-height:450px; line-height:35px;padding:5px;"><span style="line-height:35px;padding:5px;"><b>Fecha:</b>&nbsp;' . $date . '</span>
+<span style="line-height:35px;padding:5px;">&nbsp;<b>Hora:</b>&nbsp;' . $time . '</span><span style="line-height:35px;padding:5px;">&nbsp;<b>Codigo del Profesor:</b>&nbsp;' . $subject . '</span><br/><span style="line-height:35px;padding:5px;"><b>Correo Electrónico:</b>&nbsp;' . $email . '</span>&nbsp;<b>Comentario: </b>' . $feedback . '</div></div>';
           }
         } ?>
         <!--Feedback reading portion closed-->

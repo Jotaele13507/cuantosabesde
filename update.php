@@ -1,6 +1,7 @@
 <?php
 include_once 'dbConnection.php';
 session_start();
+error_reporting(E_ALL ^ E_NOTICE);
 $email = $_SESSION['email'];
 
 //BORRAR COMO ADMIN
@@ -30,7 +31,7 @@ if (isset($_SESSION['key'])) {
   if (@$_GET['defmail'] && $_SESSION['key'] == 'sunny7785068889') {
     $defmail = @$_GET['defmail'];
     $result = mysqli_query($con, "DELETE FROM prof WHERE email='$defmail' ") or die('Error');
-    header("location:dash.php?q=1");
+    header("location:dash.php?q=2");
   }
 }
 
@@ -48,7 +49,7 @@ if (isset($_SESSION['key'])) {
     $r4 = mysqli_query($con, "DELETE FROM quiz WHERE eid='$eid' ") or die('Error');
     $r4 = mysqli_query($con, "DELETE FROM history WHERE eid='$eid' ") or die('Error');
 
-    header("location:dash.php?q=5");
+    header("location:dash.php?q=6");
   }
 }
 
@@ -252,7 +253,7 @@ if (isset($_SESSION['key'])) {
   if (@$_GET['pfdid'] && $_SESSION['key'] == 'sunny7785068889') {
     $pid = @$_GET['pfdid'];
     $result = mysqli_query($con, "DELETE FROM feedback WHERE id='$pid' ") or die('Error');
-    header("location:dashprof.php?q=3");
+    header("location:dashprof.php?q=4");
   }
 }
 
@@ -270,7 +271,7 @@ if (isset($_SESSION['key'])) {
     $r4 = mysqli_query($con, "DELETE FROM quiz WHERE eid='$peid' ") or die('Error');
     $r4 = mysqli_query($con, "DELETE FROM history WHERE eid='$peid' ") or die('Error');
 
-    header("location:dashprof.php?q=6");
+    header("location:dashprof.php?q=5");
   }
 }
 
