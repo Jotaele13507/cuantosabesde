@@ -160,6 +160,14 @@
                </select>
              </div>
            </div> -->
+                        <!-- Text input-->
+                        <div class="form-group">
+                           <label class="col-md-12 control-label" for="name"></label>
+                           <div class="col-md-12">
+                              <input id="aula" name="aula" placeholder="Ingresa el Aula al que pertenece" class="form-control input-md" type="text">
+
+                           </div>
+                        </div>
 
                         <!-- Text input-->
                         <div class="form-group">

@@ -71,7 +71,17 @@ include_once 'dbConnection.php';
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li <?php if (@$_GET['q'] == 1) echo 'class="active"'; ?>><a href="account.php?q=1"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Inicio<span class="sr-only">(current)</span></a></li>
+            <li class="dropdown <?php if (@$_GET['q'] == 20 || @$_GET['q'] == 21 || @$_GET['q'] == 22 || @$_GET['q'] == 23 || @$_GET['q'] == 24 ); ?>">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>&nbsp;Clases<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="account.php?q=20">Módulo I</a></li>
+              <li><a href="account.php?q=21">Módulo II</a></li>
+              <li><a href="account.php?q=22">Módulo III</a></li>
+              <li><a href="account.php?q=23">Módulo VI</a></li>
+              <li><a href="account.php?q=24">Módulo V</a></li>
+            </ul>
+          </li>
+            <li <?php if (@$_GET['q'] == 1) echo 'class="active"'; ?>><a href="account.php?q=1"><span class="glyphicon glyphicon-education" aria-hidden="true"></span>&nbsp;Examen</a></li>
             <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="account.php?q=2"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>&nbsp;Historial</a></li>
             <li <?php if (@$_GET['q'] == 3) echo 'class="active"'; ?>><a href="account.php?q=3"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;Calificaciones</a></li>
             <li <?php if (@$_GET['q'] == 4) echo 'class="active"'; ?>><a href="account.php?q=4"><span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>&nbsp;Descargas</a></li>
@@ -106,9 +116,9 @@ include_once 'dbConnection.php';
                 echo '<tr><td style="color:#f08800"><b>' . $c++ . '</b></td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $time . '&nbsp;min</td>
 	<td><b><a class="btn btn-success" href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '"><span class="glyphicon glyphicon-file" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Examen</b></span></a></b></td></tr>';
               } else {
-                /* echo '<tr style="color:#99cc32"><td>'.$c++.'</td><td>'.$title.'&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td>'.$total.'</td><td>'.$sahi*$total.'</td><td>'.$time.'&nbsp;min</td>
-	<td><b><a href="update.php?q=quizre&step=25&eid='.$eid.'&n=1&t='.$total.'" class="pull-right btn sub1" style="margin:0px;background:red"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Otra vez</b></span></a></b></td></tr>';
- */
+                
+                echo '<tr style="color:#99cc32"><td>'.$c++.'</td><td>'.$title.'&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td>'.$total.'</td><td>'.$sahi*$total.'</td><td>'.$time.'&nbsp;min</td>
+	<td><b><a href="update.php?q=quizre&step=25&eid='.$eid.'&n=1&t='.$total.'" ></td></tr>';
               }
             }
             $c = 0;
@@ -233,6 +243,117 @@ var countdownTimer = setInterval('secondPassed()', 1000);
             echo '</table></div></div>';
           }
           ?>
+
+          <?php
+          if (@$_GET['q'] == 20) {
+            echo'';
+            echo'<div class="panel"><div class="table-responsive"><table class="table table-striped title1">';
+                echo '<h1 class="section-heading" style="text-align:center">Entorno Vivo</h1>';
+                echo'<center><img class="img-fluid" src="image/modulo1.jpg" alt="Hola Mundo" align="center"></center>';
+                echo'';
+                echo'<br><center><span class="caption text-muted" >Mapa Conceptual sobre la reproducción en general</span></center><br>';   
+                echo'<br>';
+                echo '<p style="text-align:justify"> La reproducción, el proceso que garantiza la vida Todos los seres vivos están formados por unidades estructurales llamadas células; algunos son unicelulares, es decir, están formados por una sola célula y otros son pluricelulares porque tienen varias células. Todas las células tienen diferentes tipos de estructuras internas llamadas organelos y cada uno de ellos cumple una función particular.
+                Es un hecho que la existencia de un organelo celular está supeditado a la presencia de otro; , los organelos no ejecutan en solitario su labor; más bien se complementan de una manera extraordinaria, trabajando unos para los otros y viceversa. Pero este tipo de relaciones de dependencia no solo se dan a nivel de células sino que también se presenta a nivel de tejidos, órganos y sistemas.
+                </p>';
+                  echo '</table></div></div>';
+            echo'';
+          }
+          ?>
+
+          <?php
+          if (@$_GET['q'] == 21) {
+            echo'';
+            echo'<div class="panel"><div class="table-responsive"><table class="table table-striped title1">';
+            echo '<h1 class="section-heading" style="text-align:center">La Reproducción Humana</h1>';
+            echo'<center><img class="img-fluid" src="image/modulo2.jpg" alt="Hola Mundo" align="center"></center>';
+            echo'';
+            echo'<br><center><span class="caption text-muted" >Mapa Conceptual sobre la reproducción Humana</span></center><br>';   
+            echo'<br>';
+            echo '<p style="text-align:justify"> La reproducción humana La reproducción en el ser humano es de tipo sexual, debido a que se produce intercambio de material genético entre dos gametos. Existe en el ser humano dos tipos de aparatos reproductores: el masculino, que produce los gametos llamados espermatozoides, y el femenino, que forma los óvulos o gametos femeninos. El ser humano presenta una serie de características que los diferencian de los otros mamíferos, ya
+            que muchos de éstos se reproducen durante ciertas estaciones del año y sólo producen espermatozoides u óvulos en ese tiempo; mientras que el hombre produce espermatozoides continuamente y la mujer ovula alrededor de una vez al mes. En los seres humanos se presenta el denominado dimorfismo, es decir que hay características particulares que diferencias a un sexo del otro, las cuáles se conocen como caracteres sexuales secundarios.
+            </p>';
+            echo '</table></div></div>';
+            echo'';
+          }
+          ?>
+
+          <?php
+          if (@$_GET['q'] == 22) {
+            echo'';
+            echo'<div class="panel"><div class="table-responsive"><table class="table table-striped title1">';
+            echo '<h1 class="section-heading" style="text-align:center">Fecundación, Embarazo y Parto</h1>';
+            echo'<center><img class="img-fluid" src="image/modulo3.jpg" alt="Hola Mundo" align="center"></center>';
+            echo'';
+            echo'<br><center><span class="caption text-muted" >Fases del desarrollo embrionario.</span></center><br>';   
+            echo'<br>';
+            echo '<p style="text-align:justify"> En el desarrollo de un nuevo ser en el interior del vientre de la madre, 
+            interviene una serie de fenómenos que se inician con la fecundación del óvulo. A este proceso le denomina embarazo. 
+            En éste intervienen la fecundación, la implantación, el desarrollo del embrión y del feto, y termina con el nacimiento. 
+            La fecundación es la unión de los núcleos del óvulo y del espermatozoide.
+            La unión de los gametos generalmente se realiza en el primer tercio de las trompas de Falopio y, 
+            aunque sólo se necesita un espermatozoide para fecundar el óvulo, el hombre puede llegar a depositar alrededor de 400 millones. 
+            Tal cantidad obedece a una estrategia biológica para asegurar la fecundación. Cuando los espermatozoides están en contacto con el óvulo, 
+            tratan de penetrar sus capas con ayuda de sustancias químicas. Sólo uno de ellos lo logra. Durante el proceso, 
+            la cabeza de este espermatozoide se separa de la cola, y la capa exterior del óvulo experimenta una serie de modificaciones químicas que 
+            impiden la entrada de otros espermatozoides. Posteriormente, se unen los núcleos del espermatozoide (con 23 cromosomas: 1n) y el óvulo
+            (con 23 cromosomas: 1n), de tal manera que la célula recién formada contiene 46 cromosomas y recibe el nombre de cigoto (2n).
+            </p>';
+              echo '</table></div></div>';
+            echo'';
+          }
+          ?>
+
+          <?php
+          if (@$_GET['q'] == 23) {
+            echo'';
+            echo'<div class="panel"><div class="table-responsive"><table class="table table-striped title1">';
+            echo '<h1 class="section-heading" style="text-align:center">Enfermedades de Transmisión Sexual</h1>';
+            echo'<center><img class="img-fluid" src="image/modulo4.jpg" alt="Hola Mundo" align="center"></center>';
+            echo'';
+            echo'<br><center><span class="caption text-muted" >Virus del SIDA</span></center><br>';   
+            echo'<br>';
+            echo '<p style="text-align:justify"> El cuerpo humano constantemente está siendo atacado por microorganismos, 
+            entre los cuales se encuentran las bacterias. Las bacterias producen enfermedades como tuberculosis y difteria 
+            que se transmiten por contacto con otras personas que están contagiadas. Algunas bacterias transmiten enfermedades
+            pero solo cuando hay contacto sexual, a estas enfermedades se les conoce como enfermedades de transmisión sexual o venéreas.
+
+            Existe un gran número de enfermedades infecciosas que atacan al ser humano y pueden adquirirse de diferentes maneras. 
+            Una de las formas de contraer enfermedades es por vía sexual, es decir, se adquieren por medio del contacto sexual con una persona infectada, 
+            a través del semen o de los fluidos vaginales. Las enfermedades que se transmiten de esta forma se conocen como enfermedades sexualmente transmisibles. 
+            Dentro de ellas encontramos la sífilis, la gonorrea, la candidiasis, el herpes genital y el sida.
+            </p>';
+              echo '</table></div></div>';
+            echo'';
+          }
+          ?>
+
+          <?php
+          if (@$_GET['q'] == 24) {
+            echo'';
+            echo'<div class="panel"><div class="table-responsive"><table class="table table-striped title1">';
+            echo '<h1 class="section-heading" style="text-align:center">Las Funciones Nerviosas</h1>';
+            echo'<center><img class="img-fluid" src="image/modulo5.jpg" width="700" height="800" align="center"></center>';
+            echo'';
+            echo'<br><center><span class="caption text-muted" >El Sistema Nervioso y sus Funciones.</span></center><br>';   
+            echo'<br>';
+            echo '<p style="text-align:justify"> Una característica muy importante de los seres vivos es su capacidad de respuesta a los estímulos. 
+            Los estímulos son cualquier cambio en el medio externo e interno capaz de producir una reacción en un organismo. 
+            Los estímulos son conducidos a través de un sistema complejo de neuronas. Los seres vivos responden a diversos estímulos, 
+            como cambios de temperatura, luz, sonido, presencia de sustancias químicas, entre otros. Estas respuestas varían en intensidad,            
+            dependiendo del estímulo que se reciba; por ejemplo si la intensidad de la luz es muy amplia la pupila del ojo responde cerrándose 
+            y si la intensidad es muy baja la pupila se abre. El sistema nervioso tiene por función captar la información del exterior o del interior, 
+            procesarla mediante la generación de señales electroquímicas y dar una respuesta rápida. Se cree que todas las células vivas son capaces de 
+            percibir estímulos. Por ejemplo, si se pincha a una ameba con un alfiler, ella responde ante el estímulo, la actividad eléctrica percibida
+             en ella es semejante al impulso nervioso que se produce en los animales y el ser humano. El sistema nervioso no es igual en todos los organismos. 
+             Algunos ejemplos de esta diversidad son: Sistema nervioso difuso: en la hidra que posee una red de “hilos” constituidos por células 
+             nerviosas que se extienden por todo el organismo. Al recibir un estímulo intenso y duradero, los impulsos se difunden y todo el individuo
+              reacciona al mismo tiempo.</p>';
+              echo '</table></div></div>';
+            echo'';
+          }
+          ?>
+
         </div>
       </div>
     </div>

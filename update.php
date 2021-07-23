@@ -84,7 +84,22 @@ if (isset($_SESSION['key'])) {
   }
 }
 
+//add prof en admin
+if (isset($_SESSION['key'])) {
+  if (@$_GET['q'] == 'addprof' && $_SESSION['key'] == 'sunny7785068889') {
+    $prof_id = $_POST['prof_id'];
+    $name_prof = $_POST['name_prof'];
+    $aula = $_POST['aula'];
+    $bachiller = $_POST['bachiller'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
+    $qprof = mysqli_query($con, "INSERT INTO prof VALUES ('$prof_id', '$name_prof', '$aula', '$bachiller', '$email', '$password')");
+    $qaula = mysqli_query($con, "INSERT INTO aula VALUES ('$aula', '$bachiller')");
+
+    header("location:dash.php?q=2");
+  }
+}
 
 //delete aula en admin
 if (isset($_SESSION['key'])) {
@@ -95,7 +110,7 @@ if (isset($_SESSION['key'])) {
   }
 }
 
-//AULA START
+//AULA END
 
 //add question en admin
 if (isset($_SESSION['key'])) {
@@ -145,18 +160,18 @@ if (isset($_SESSION['key'])) {
   }
 }
 
-//quiz start en admin
+//quiz start en admin/Estudiante
 if (@$_GET['q'] == 'quiz' && @$_GET['step'] == 2) {
   $eid = @$_GET['eid'];
   $sn = @$_GET['n'];
   $total = @$_GET['t'];
-  $ans = $_POST['ans'];
+  $ans = $_POST['ans']; //Respuesta
   $qid = @$_GET['qid'];
   $q = mysqli_query($con, "SELECT * FROM answer WHERE qid='$qid' ");
   while ($row = mysqli_fetch_array($q)) {
     $ansid = $row['ansid'];
   }
-  if ($ans == $ansid) {
+  if ($ans == $ansid) { //Si el ID de la respuesta dada es igual a el ID de la respuesta correcta, Entonces
     $q = mysqli_query($con, "SELECT * FROM quiz WHERE eid='$eid' ");
     while ($row = mysqli_fetch_array($q)) {
       $sahi = $row['sahi'];
@@ -166,7 +181,7 @@ if (@$_GET['q'] == 'quiz' && @$_GET['step'] == 2) {
     }
     $q = mysqli_query($con, "SELECT * FROM history WHERE eid='$eid' AND email='$email' ") or die('Error115');
 
-    while ($row = mysqli_fetch_array($q)) {
+    while ($row = mysqli_fetch_array($q)) { //Parte de las respuestas correctas
       $s = $row['score'];
       $r = $row['sahi'];
     }
@@ -191,7 +206,7 @@ if (@$_GET['q'] == 'quiz' && @$_GET['step'] == 2) {
     $s = $s - $wrong;
     $q = mysqli_query($con, "UPDATE `history` SET `score`=$s,`level`=$sn,`wrong`=$w, date=NOW() WHERE  email = '$email' AND eid = '$eid'") or die('Error147');
   }
-  if ($sn != $total) {
+  if ($sn != $total) { //Cuando respondes todas las preguntas
     $sn++;
     header("location:account.php?q=quiz&step=2&eid=$eid&n=$sn&t=$total") or die('Error152');
   } else if ($_SESSION['key'] != 'sunny7785068889') {

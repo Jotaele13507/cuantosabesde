@@ -76,13 +76,13 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li <?php if (@$_GET['q'] == 1) echo 'class="active"'; ?>><a href="dash.php?q=1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;Estudiantes</a></li>
-          <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="dash.php?q=2"><span class="glyphicon glyphicon-education" aria-hidden="true"></span>&nbsp;Profesores</a></li>
-          <li class="dropdown <?php if (@$_GET['q'] == 7 || @$_GET['q'] == 8) echo 'active"'; ?>">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-apple" aria-hidden="true"></span>&nbsp;Aula<span class="caret"></span></a>
+          <li class="dropdown <?php if (@$_GET['q'] == 10 || @$_GET['q'] == 2) echo 'active"'; ?>">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-education" aria-hidden="true"></span>&nbsp;Profesores<span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="dash.php?q=7">Agregar Aula</a></li>
-              <li><a href="dash.php?q=8">Administrar Aula</a></li>
+              <li><a href="dash.php?q=10">Agregar Profesores</a></li>
+              <li><a href="dash.php?q=2">Administrar Profesores</a></li>
             </ul>
+          <li <?php if (@$_GET['q'] == 8) echo 'class="active"'; ?>><a href="dash.php?q=8"><span class="glyphicon glyphicon-apple" aria-hidden="true"></span>&nbsp;Aulas</a></li>
           <li <?php if (@$_GET['q'] == 3) echo 'class="active"'; ?>><a href="dash.php?q=3"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;Calificaciones</a></li>
           <li <?php if (@$_GET['q'] == 4) echo 'class="active"'; ?>><a href="dash.php?q=4"><span class="glyphicon glyphicon-send" aria-hidden="true"></span>&nbsp;Solicitudes</a></li>
           <li class="dropdown <?php if (@$_GET['q'] == 5 || @$_GET['q'] == 6) echo 'active"'; ?>">
@@ -155,7 +155,7 @@
         <!--Estudiantes start-->
         <?php if (@$_GET['q'] == 1) {
 
-          echo'
+          echo '
           
 
           ';
@@ -179,24 +179,95 @@
         } ?>
         <!--Estudiantes end-->
 
-        <!--prof start-->
+        <!--prof add start-->
+        <?php if (@$_GET['q'] == 10) {
+          echo '
+          <div class="row">
+            <span class="title1" style="margin-left:40%;font-size:30px;"><b>Agregar Profesor</b></span><br /><br />
+              <div class="col-md-3"></div><div class="col-md-6">   
+                <form class="form-horizontal title1" name="form" action="update.php?q=addprof"  method="POST">
+                 <fieldset>
+                    <!-- Text input-->
+                    <div class="form-group">
+                      <label class="col-md-12 control-label" for="name"></label>  
+                      <div class="col-md-12">
+                        <input id="prof_id" name="prof_id" placeholder="Ingrese el Código del profesor" class="form-control input-md" type="text" required>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-12 control-label" for="name"></label>  
+                        <div class="col-md-12">
+                          <input id="name_prof" name="name_prof" placeholder="Ingrese el Nombre completo del profesor" class="form-control input-md" type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-md-12 control-label" for="name"></label>  
+                        <div class="col-md-12">
+                          <input id="email" name="email" placeholder="Ingrese el Email del Profesor" class="form-control input-md" type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <label class="col-md-12 control-label" for="name"></label>  
+                      <div class="col-md-12">
+                        <input id="password" name="password" placeholder="Ingrese una contraseña" class="form-control input-md" type="text" required>
+                      </div>
+                  </div>
+                    <div class="form-group">
+                      <label class="col-md-12 control-label" for="name"></label>  
+                        <div class="col-md-12">
+                        <span class="help-block">Eliga el Aula</span>
+                          <select id="aula" name="aula" class="form-control input-md">
+                            <option value="Decimo A">Decimo A</option>
+                            <option value="Decimo B">Decimo B</option>
+                            <option value="Decimo C">Decimo C</option>
+                            <option value="Decimo D">Decimo D</option>
+                          </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                    <label class="col-md-12 control-label" for="name"></label>  
+                      <div class="col-md-12">
+                      <span class="help-block">Eliga el Bachiller</span>
+                        <select id="bachiller" name="bachiller" class="form-control input-md">
+                          <option value="Ciencias">Ciencias</option>
+                          <option value="Letras">Letras</option>
+                        </select>
+                      </div>
+                  </div>
+                    <div class="form-group">
+                      <label class="col-md-12 control-label" for=""></label>
+                      <div class="col-md-12"> 
+                        <input  type="submit" style="margin-left:45%" class="btn btn-primary" value="Crear" class="btn btn-primary"/>
+                      </div>
+                    </div>
+                  </fieldset>
+                </form>
+              </div>';
+        } ?>
+
+        <!--prof add end-->
+
+        <!--prof admin start-->
         <?php if (@$_GET['q'] == 2) {
 
           $result = mysqli_query($con, "SELECT * FROM prof") or die('Error');
           echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
-                <tr style="color:#0c0f38"><td><b>ID Prof</b></td><td><b>Nombre del Profesor</b></td><td><b>Correo Electrónico</b></td><td></td></tr>';
+                <tr style="color:#0c0f38"><td><b>ID Prof</b></td><td><b>Nombre del Profesor</b></td><td><b>Correo Electrónico</b></td><td><b>Aula</b></td><td><b>Bachiller</b></td><td></td><td></td></tr>';
 
           while ($row = mysqli_fetch_array($result)) {
             $idprof = $row['prof_id'];
             $name_prof = $row['name_prof'];
             $emailprof = $row['email'];
+            $aula = $row['aula'];
+            $bachiller = $row['bachiller'];
 
-            echo '<tr><td>' . $idprof . '</td><td>' . $name_prof . '</td><td>' . $emailprof . '</td>
+            echo '<tr><td>' . $idprof . '</td><td>' . $name_prof . '</td><td>' . $emailprof . '</td><td>' . $aula . '</td><td>' . $bachiller . '</td>
+            
                   <td><a class="btn btn-danger" title="Delete User" href="update.php?defmail=' . $emailprof . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Borrar</b></a></td></tr>';
           }
           echo '</table></div></div>';
         } ?>
-        <!--prof end-->
+        <!--prof admin end-->
 
         <!--Add Aula start-->
         <?php if (@$_GET['q'] == 7) {
@@ -244,7 +315,7 @@
             $bachiller = $row['bachiller'];
 
             echo '<td>' . $aula . '</td><td>' . $bachiller . '</td>
-	                <td><a class="btn btn-primary" title="Abrir Aula" href="dash.php?q=9&aaula=' . $aula . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Abrir</b></a></td>';
+	                <td><a class="btn btn-primary" title="Abrir Aula" href="dash.php?q=9&aula=' . $aula . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Abrir</b></a></td>';
             echo '<td><a class="btn btn-success" title="Agregar al Aula" href="update.php?addaula=' . $aula . '"><b><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Agregar</b></a></td>';
             echo '<td><a class="btn btn-warning" title="Editar Aula" href="update.php?edaula=' . $aula . '"><b><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar</b></a></td>';
             echo '<td><a class="btn btn-danger" title="Borrar Aula" href="update.php?deaula=' . $aula . '"><b><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Borrar</b></a></td></tr>';
@@ -252,6 +323,43 @@
           echo '</table></div></div>';
         } ?>
         <!--admin Aula end-->
+
+        <!--Aula reading portion start-->
+
+        <?php if (@$_GET['aula']) {
+          echo '<br />';
+          $aula = @$_GET['aula'];
+          $result = mysqli_query($con, "SELECT * FROM prof WHERE aula='$aula' ") or die('Error');
+          while ($row = mysqli_fetch_array($result)) {
+            $idprof = $row['prof_id'];
+            $name_prof = $row['name_prof'];
+            $emailprof = $row['email'];
+            $aula = $row['aula'];
+            $bachiller = $row['bachiller'];
+
+            echo '<div class="panel"<a title="Back to Archive" href="update.php?q1=2"><b><span class="glyphicon glyphicon-level-up" aria-hidden="true"></span></b></a><h2 style="text-align:center; margin-top:-15px;font-family: "Ubuntu", sans-serif;"><b>' . $aula . ' - ' . $bachiller . '</b></h1>';
+
+            echo '<div class="mCustomScrollbar" data-mcs-theme="dark" style="margin-left:60px;margin-right:10px; max-height:450px; line-height:35px;padding:5px;"><span style="line-height:35px;padding:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>Nombre del profesor:</b>&nbsp;' . $name_prof . '</span> <span style="line-height:35px;padding:5px;">&nbsp;<b>Correo Eléctronico:</b>&nbsp;' . $emailprof . '</span><span style="line-height:35px;padding:5px;">&nbsp;<b>Codigo del Profesor:</b>&nbsp;' . $idprof . '</span><br/>';
+          }
+          $est = mysqli_query($con, "SELECT * FROM user WHERE aula='$aula' ") or die('Error231');
+          echo  '<div class="panel"><div class="table-responsive"><table class="table table-striped title1">
+          <tr style="color:#0c0f38"><td><b>Nombre</b></td><td><b>Correo Electrónico</b></td><td><b>Móvil</b></td></tr>';
+          $c = 1;
+          while ($row = mysqli_fetch_array($est)) {
+            $name = $row['name'];
+            $college = $row['college'];
+            $mob = $row['mob'];
+            $email = $row['email'];
+            $aulae = $row['aula'];
+        
+          $c++;
+          echo '<tr><td>' . $name . '</td><td>' . $email . '</td><td>' . $mob . '</td></tr>';}
+      
+        echo '</table></div></div>';
+          }
+        ?>
+        <!--Aula reading portion closed-->
 
         <!--feedback start-->
         <?php if (@$_GET['q'] == 4) {
